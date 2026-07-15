@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status, Depends
-from fastapi.security import HTTPBearer, HTTPAuthCredentials
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.models import UserCreate, UserLogin, UserResponse, PasswordReset, Token
 import firebase_admin
 from firebase_admin import credentials, auth, db
@@ -91,7 +91,9 @@ async def login(user: UserLogin):
         )
 
 @router.post("/verify-token")
-async def verify_token(credentials: HTTPAuthCredentials = Depends(security)):
+async def verify_token(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+):
     """Verify JWT token"""
     try:
         payload = jwt.decode(
@@ -110,7 +112,7 @@ async def verify_token(credentials: HTTPAuthCredentials = Depends(security)):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token expired"
         )
-    except jwt.JWTError:
+    except jwt.InvalidTokenError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token"
