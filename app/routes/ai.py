@@ -12,10 +12,9 @@ security = HTTPBearer()
 if settings.OPENAI_API_KEY:
     openai.api_key = settings.OPENAI_API_KEY
 
-@router.post("/chat", response_model=ChatResponse)
-async def chat_with_ai(
-    request: ChatRequest,
-    credentials = Depends(security),
+@router.post("/generate-quiz")
+async def generate_quiz(
+    request: QuizGenerateRequest,
 ):
     """Chat with AI assistant"""
     try:
