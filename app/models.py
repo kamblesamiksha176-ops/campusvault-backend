@@ -95,9 +95,10 @@ class ChatResponse(BaseModel):
     timestamp: datetime
 
 class QuizGenerateRequest(BaseModel):
-    topic: str
+    subject: str
+    branch: str
+    semester: int
     number_of_questions: int = 10
-
 class ExplainRequest(BaseModel):
     topic: str
 
