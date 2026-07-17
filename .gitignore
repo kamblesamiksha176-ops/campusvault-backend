@@ -1,0 +1,121 @@
+# Dependencies
+/node_modules
+/.dart_tool
+/build
+/dist
+/venv
+/__pycache__
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*.swn
+*~
+.DS_Store
+
+# Flutter
+.packages
+.pub-cache/
+pubspec.lock
+pubspec.yaml.lock
+*.iml
+local.properties
+
+# Backend
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+instance/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Firebase
+firebase-debug.log
+.runtimeconfig.json
+service-account-key.json
+firebase_credentials.json
+
+# Credentials
+*.pem
+*.key
+*.p12
+*.jks
+upload-keystore.jks
+
+# Android
+android/app/google-services.json
+android/app/debug.keystore
+android/local.properties
+android/.gradle/
+android/build/
+
+# iOS
+ios/.symlinks/
+ios/.generated/
+ios/Runner/GeneratedPluginRegistrant.swift
+ios/Pods
+ios/Flutter/Flutter.podspec
+
+# Web
+web/.dart_tool/
+web/packages
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.DS_Store
+*.pem
+*.key
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Production
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~

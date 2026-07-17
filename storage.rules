@@ -1,0 +1,71 @@
+// Firebase Storage Rules for CampusVault
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return request.auth.token.role == 'admin';
+    }
+    
+    function isTeacher() {
+      return request.auth.token.role == 'teacher';
+    }
+    
+    function isStudent() {
+      return request.auth.token.role == 'student';
+    }
+    
+    // Notes
+    match /notes/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (isTeacher() || isAdmin());
+    }
+    
+    // PPTs
+    match /ppt/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (isTeacher() || isAdmin());
+    }
+    
+    // Videos
+    match /videos/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (isTeacher() || isAdmin());
+    }
+    
+    // Assignments
+    match /assignments/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (isTeacher() || isAdmin());
+    }
+    
+    // Question Papers
+    match /question_papers/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (isTeacher() || isAdmin());
+    }
+    
+    // Premium content
+    match /premium/{allPaths=**} {
+      allow read: if isAuthenticated() && request.auth.token.subscription == true;
+      allow write: if isAuthenticated() && isAdmin();
+    }
+    
+    // Profile images
+    match /profile_images/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

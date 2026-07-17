@@ -1,0 +1,76 @@
+// Firestore Security Rules for CampusVault
+// Deploy these rules in Firebase Console > Firestore Database > Rules tab
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data.role == 'admin';
+    }
+    
+    function isTeacher(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data.role == 'teacher';
+    }
+    
+    function isStudent(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data.role == 'student';
+    }
+    
+    function isPremiumUser(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data.subscription == true;
+    }
+    
+    // Users collection
+    match /users/{uid} {
+      allow read: if isAuthenticated() && (request.auth.uid == uid || isAdmin(request.auth.uid));
+      allow write: if isAuthenticated() && request.auth.uid == uid;
+      allow create: if isAuthenticated();
+      
+      // User bookmarks subcollection
+      match /bookmarks/{bookmarkId} {
+        allow read, write: if isAuthenticated() && request.auth.uid == uid;
+      }
+    }
+    
+    // Resources collection
+    match /resources/{resourceId} {
+      allow read: if isAuthenticated() && (!resource.data.premium || isPremiumUser(request.auth.uid));
+      allow create: if isAuthenticated() && (isTeacher(request.auth.uid) || isAdmin(request.auth.uid));
+      allow update, delete: if isAuthenticated() && (request.auth.uid == resource.data.uploaderId || isAdmin(request.auth.uid));
+    }
+    
+    // Quizzes collection
+    match /quizzes/{quizId} {
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isAuthenticated() && isAdmin(request.auth.uid);
+      
+      // Quiz responses
+      match /responses/{responseId} {
+        allow read, write: if isAuthenticated() && request.auth.uid == resource.data.userId;
+      }
+    }
+    
+    // Subscriptions collection
+    match /subscriptions/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin(request.auth.uid));
+      allow create, update, delete: if isAuthenticated() && isAdmin(request.auth.uid);
+    }
+    
+    // Notifications collection
+    match /notifications/{notificationId} {
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isAuthenticated() && isAdmin(request.auth.uid);
+    }
+    
+    // Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
