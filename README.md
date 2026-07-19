@@ -282,3 +282,663 @@ For support, email: support@campusvault.com
 ---
 
 **Built with ❤️ for students**
+
+# CampusVault – README.md
+
+> **AI-Powered Educational Resource Management System**
+>
+> **Final Year Engineering Project**
+
+---
+
+# CampusVault
+
+CampusVault is a centralized educational resource management platform designed specifically for engineering and diploma colleges. The application enables students, teachers, and administrators to collaborate through a secure cloud-based system where academic resources can be managed efficiently.
+
+The project aims to replace the traditional method of sharing notes, assignments, question papers, and study materials through multiple platforms like WhatsApp, Telegram, Google Drive, and Email with one integrated platform.
+
+---
+
+# Table of Contents
+
+* Project Overview
+* Problem Statement
+* Proposed Solution
+* Objectives
+* Technologies Used
+* System Architecture
+* User Roles
+* Features
+* Database Design
+* Backend Architecture
+* Frontend Architecture
+* API Structure
+* Authentication
+* Security
+* Project Workflow
+* Deployment
+* Current Status
+* Future Scope
+* Challenges Faced
+* Learning Outcomes
+* Conclusion
+
+---
+
+# Project Overview
+
+Educational institutions generally use multiple communication platforms to distribute study materials. This makes resource management difficult for both students and teachers.
+
+CampusVault provides one centralized platform where:
+
+* Students can access educational resources.
+* Teachers can upload learning materials.
+* Administrators can manage the system.
+* AI assists students in learning.
+
+The application is built using modern web technologies following a Client–Server architecture.
+
+---
+
+# Problem Statement
+
+Many educational institutions face the following challenges:
+
+* Study materials are scattered across different platforms.
+* Students spend time searching instead of learning.
+* Previous year question papers are difficult to find.
+* Teachers repeatedly upload the same files.
+* No centralized learning platform exists.
+* No AI-based academic support.
+* Poor organization of educational resources.
+
+These issues reduce productivity and create unnecessary confusion.
+
+---
+
+# Proposed Solution
+
+CampusVault solves these problems by creating one secure cloud platform where:
+
+* Teachers upload educational resources.
+* Students access resources anytime.
+* Authentication protects user accounts.
+* AI provides educational assistance.
+* Quizzes improve learning.
+* Administrators monitor the platform.
+
+The objective is to simplify educational resource management.
+
+---
+
+# Project Objectives
+
+The main objectives are:
+
+* Centralize educational resources.
+* Improve accessibility.
+* Reduce dependency on multiple communication platforms.
+* Secure user authentication.
+* Integrate Artificial Intelligence.
+* Create a scalable educational platform.
+* Improve collaboration between students and teachers.
+
+---
+
+# Technologies Used
+
+## Frontend
+
+* React.js
+* Vite
+* Tailwind CSS
+* Axios
+* React Router DOM
+* React Icons
+
+---
+
+## Backend
+
+* Python
+* FastAPI
+* Motor
+* JWT Authentication
+* Passlib (bcrypt)
+* Pydantic
+* REST APIs
+
+---
+
+## Database
+
+* MongoDB Atlas
+
+---
+
+## Cloud Deployment
+
+Frontend
+
+* Vercel
+
+Backend
+
+* Render
+
+Database
+
+* MongoDB Atlas
+
+---
+
+## AI
+
+* Gemini API (planned integration)
+
+---
+
+# System Architecture
+
+```
+Student / Teacher / Admin
+            │
+            ▼
+     React Frontend
+            │
+            ▼
+     FastAPI Backend
+            │
+            ▼
+      MongoDB Atlas
+```
+
+The frontend sends REST API requests to the FastAPI backend.
+
+The backend processes business logic, authentication, and communicates with MongoDB Atlas.
+
+---
+
+# User Roles
+
+## Student
+
+Students can:
+
+* Register
+* Login
+* View Dashboard
+* Access Resources
+* Search Notes
+* Download Study Materials
+* Attempt Quizzes
+* View Profile
+* Use AI Assistant (planned)
+
+---
+
+## Teacher
+
+Teachers can:
+
+* Upload Notes
+* Upload PDFs
+* Upload PPTs
+* Upload Assignments
+* Upload Question Papers
+* Create Quizzes
+* Manage Resources
+
+---
+
+## Administrator
+
+Administrator manages:
+
+* Students
+* Teachers
+* Educational Resources
+* Subjects
+* Branches
+* Analytics
+* Premium Users (future)
+
+---
+
+# Features
+
+## Authentication
+
+* Registration
+* Login
+* JWT Authentication
+* Password Hashing
+* Protected APIs
+
+Future:
+
+* Email Verification
+* Forgot Password
+* Reset Password
+
+---
+
+## Dashboard
+
+Displays:
+
+* User Profile
+* Quick Navigation
+* Recent Activity
+* Notifications
+* Resource Statistics
+
+---
+
+## Resource Management
+
+Supports:
+
+* Notes
+* PDFs
+* PPTs
+* Assignments
+* Previous Year Question Papers
+
+Future:
+
+* Search
+* Filter
+* Download Counter
+* Bookmarks
+
+---
+
+## Quiz Module
+
+Supports:
+
+* MCQ Quizzes
+* Timer
+* Auto Submit
+* Result
+* Score
+* Leaderboard
+
+---
+
+## AI Module
+
+Planned capabilities:
+
+* Ask Doubts
+* Explain Concepts
+* Quiz Generation
+* Question Bank Generation
+* PDF Summarization
+* Career Guidance
+* Programming Help
+
+---
+
+## Notification Module
+
+Future implementation:
+
+* Teacher Upload Notification
+* Quiz Notification
+* Announcements
+
+---
+
+## Profile Module
+
+Stores:
+
+* Name
+* Email
+* Phone
+* College
+* Branch
+* Semester
+* Role
+
+Future:
+
+* Profile Editing
+* Profile Picture
+* Password Change
+
+---
+
+# Database Design
+
+Collections:
+
+```
+users
+
+resources
+
+quizzes
+
+quiz_attempts
+
+bookmarks
+
+notifications
+
+subscriptions
+
+chat_history
+
+analytics
+```
+
+MongoDB Atlas stores all application data securely.
+
+---
+
+# Backend Architecture
+
+The backend is developed using FastAPI.
+
+Responsibilities include:
+
+* Authentication
+* API Development
+* Database Communication
+* Business Logic
+* JWT Generation
+* Validation
+* Error Handling
+
+Folder Structure:
+
+```
+backend/
+
+app/
+
+routes/
+
+models.py
+
+database.py
+
+config.py
+
+utils/
+
+main.py
+```
+
+---
+
+# Frontend Architecture
+
+Developed using React.
+
+Responsibilities:
+
+* User Interface
+* Dashboard
+* Login
+* Registration
+* Resource Pages
+* API Communication
+
+Folder Structure:
+
+```
+frontend/
+
+src/
+
+components/
+
+pages/
+
+services/
+
+hooks/
+
+context/
+
+assets/
+```
+
+---
+
+# API Structure
+
+Authentication APIs
+
+```
+POST /register
+
+POST /login
+
+GET /me
+```
+
+Resource APIs
+
+```
+GET /resources
+
+POST /resources
+
+DELETE /resources/{id}
+```
+
+Quiz APIs
+
+```
+POST /quiz
+
+GET /quiz
+
+POST /submit
+```
+
+AI APIs
+
+```
+POST /chat
+
+POST /summarize
+
+POST /generate-quiz
+```
+
+---
+
+# Authentication
+
+CampusVault uses JWT Authentication.
+
+Workflow:
+
+1. User registers.
+2. Password is hashed.
+3. Data stored in MongoDB.
+4. User logs in.
+5. Backend verifies credentials.
+6. JWT Token generated.
+7. Token used for protected APIs.
+
+Benefits:
+
+* Secure
+* Stateless
+* Scalable
+
+---
+
+# Security
+
+Security measures include:
+
+* Password Hashing
+* JWT Authentication
+* Protected APIs
+* Input Validation
+* Error Handling
+
+Future:
+
+* Email Verification
+* Rate Limiting
+* Two-Factor Authentication
+
+---
+
+# Project Workflow
+
+```
+User
+
+↓
+
+Frontend (React)
+
+↓
+
+FastAPI Backend
+
+↓
+
+MongoDB Atlas
+
+↓
+
+Response
+
+↓
+
+Frontend Dashboard
+```
+
+---
+
+# Deployment
+
+Frontend
+
+Vercel
+
+Backend
+
+Render
+
+Database
+
+MongoDB Atlas
+
+Deployment ensures the application is accessible through the internet.
+
+---
+
+# Current Status
+
+### Completed
+
+* FastAPI Backend
+* MongoDB Atlas Integration
+* User Registration
+* User Login
+* JWT Authentication
+* Swagger Documentation
+* React Frontend
+* Deployment
+* API Communication
+
+### In Progress
+
+* Profile Editing
+* Teacher Upload Module
+* Quiz Module
+* AI Integration
+* Notifications
+* Analytics
+* Premium Features
+
+---
+
+# Future Scope
+
+Future enhancements include:
+
+* AI Tutor
+* Smart Resource Recommendation
+* Mobile Application
+* Video Lectures
+* Live Classes
+* Attendance Management
+* Push Notifications
+* Premium Learning Resources
+* Performance Analytics
+* Offline Mode
+
+---
+
+# Challenges Faced
+
+During development the following challenges were encountered:
+
+* Backend authentication implementation.
+* MongoDB Atlas connectivity.
+* JWT integration.
+* Frontend–Backend communication.
+* Cloud deployment.
+* API testing.
+* Environment variable configuration.
+* Learning modern web development architecture.
+
+These challenges provided valuable practical experience.
+
+---
+
+# Learning Outcomes
+
+This project helped develop skills in:
+
+* Full-Stack Web Development
+* REST API Design
+* FastAPI
+* React
+* MongoDB
+* Authentication
+* Cloud Deployment
+* Debugging
+* Version Control
+* Software Architecture
+
+---
+
+# Conclusion
+
+CampusVault is a modern educational platform that demonstrates the integration of frontend development, backend development, cloud databases, authentication, and scalable architecture.
+
+Although some advanced modules are still under development, the project establishes a strong foundation for a centralized educational ecosystem. The modular design allows new features to be added without affecting the existing architecture.
+
+---
+
+## Author
+
+**Samiksha kamble **
+Diploma in computer engineering 
+
+**Project Title:** CampusVault – AI-Powered Educational Resource Management System
+
+---
+
+This README is suitable for:
+
+* ✔️ GitHub repository
+* ✔️ College project submission
+* ✔️ Teacher review
+* ✔️ Viva preparation
+* ✔️ Portfolio documentation
+
